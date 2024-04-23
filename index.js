@@ -44,7 +44,8 @@ app.post('/api/stickersapp/stickers', (request, response) => {
         database.collection("stickersappcollection").insertOne({
             id: (numOfDocs+1).toString(),
             name: request.body.name,
-            country: request.body.country
+            country: request.body.country,
+            userName: request.body.userName
         });
         response.json("Added successfully");
     })
