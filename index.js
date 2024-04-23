@@ -7,12 +7,13 @@ var app = Express();
 app.use(cors());
 app.use(Express.json());
 
-var databaseConnectionString = process.env.DB_CONNECTION_STRING
-var databaseName = process.env.DB_NAME
+const databaseConnectionString = process.env.DB_CONNECTION_STRING
+const databaseName = process.env.DB_NAME
+const port = process.env.PORT || 5050;
 
 var database;
 
-app.listen(5050, () => {
+app.listen(port, () => {
     MongoClient.connect(databaseConnectionString,(error,client) =>{
         try {
             database=client.db(databaseName);
@@ -24,7 +25,7 @@ app.listen(5050, () => {
 
     });
 
-    console.log("Server started...");
+    console.log(`Server is running on port ${port}`);
 });
 
 app.get('/api/stickersapp/health', (request, response) => {
