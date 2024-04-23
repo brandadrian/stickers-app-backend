@@ -14,8 +14,14 @@ var database;
 
 app.listen(5050, () => {
     MongoClient.connect(databaseConnectionString,(error,client) =>{
-        database=client.db(databaseName);
-        console.log("Database connected");
+        try {
+            database=client.db(databaseName);
+            console.log("Database connected");
+        } catch(ex)
+        {
+            console.error("Error connecting to database", ex);
+        }
+
     });
 
     console.log("Server started...");
