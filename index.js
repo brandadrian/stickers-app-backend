@@ -21,6 +21,10 @@ app.listen(5050, () => {
     console.log("Server started...");
 });
 
+app.get('/api/stickersapp/health', (request, response) => {
+    response.json("healthy");
+})
+
 app.get('/api/stickersapp/stickers', (request, response) => {
     database.collection("stickersappcollection").find({}).toArray((error, result) =>{
         response.send(result);
